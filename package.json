@@ -1,0 +1,6 @@
+{
+  "name": "poster",
+  "version": "0.4.0",
+  "description": "Deterministic typographic poster generator. Two directors, one phrase.",
+  "private": true
+}

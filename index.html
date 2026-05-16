@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>poster — deterministic typographic posters</title>
+<meta name="description" content="Type a phrase. Two art directors compose. 10 template families, 45,408 variants, every decision shown.">
+<link rel="stylesheet" href="shared/chrome.css">
+<link rel="stylesheet" href="shared/gui.css">
+<link rel="stylesheet" href="shared/theme-tokens.css">
+<link rel="stylesheet" href="shared/style.css">
+<script src="shared/theme.js"></script>
+</head>
+<body class="wa-effect poster-app">
+
+<header class="wa-top">
+  <div class="theme-switcher-container">
+    <button class="theme-switcher-pill" aria-label="Cycle theme" title="Cycle theme">
+      <span class="theme-switcher-pill-icon">●</span>
+    </button>
+  </div>
+  <nav class="kami-breadcrumb">
+    <a href="https://iamkesava.com">home</a><span class="sep">·</span>
+    <a href="https://toys.iamkesava.com">toys</a><span class="sep">·</span>
+    <span class="current">poster</span>
+  </nav>
+  <div class="grow"></div>
+  <div class="wa-actions">
+    <button id="edit-toggle" class="wa-action-btn" title="Edit copy per poster" aria-pressed="false">edit</button>
+    <button id="panel-toggle" class="wa-action-btn" title="Toggle control panel" aria-pressed="true">control</button>
+    <button id="help-btn" title="Keyboard shortcuts">?</button>
+  </div>
+</header>
+
+<main class="wa-stage poster-stage">
+  <section class="masthead">
+    <div class="masthead-rule"></div>
+    <div class="masthead-lede">
+      <h1 class="masthead-title">A typophile's autonomous studio.</h1>
+      <p class="masthead-sub">Type a phrase. Two art directors compose. Every decision shown. Every decision editable.</p>
+    </div>
+    <div class="masthead-rule"></div>
+  </section>
+
+  <section class="input-strip">
+    <textarea id="phrase" rows="2" spellcheck="false">less is more</textarea>
+    <div class="input-cta">
+      <button id="go" title="⌘/Ctrl + Enter">Compose</button>
+      <label class="tb" for="img-upload" style="text-align:center;cursor:pointer;justify-content:center;font-size:12px;">image substrate ↑</label>
+      <input id="img-upload" type="file" accept="image/*" style="display:none">
+    </div>
+  </section>
+  <div id="status">seed: ready</div>
+
+  <div class="diptych">
+    <article class="poster-card">
+      <div class="edit-strip" data-key="a">
+        <label class="edit-lbl">copy · A</label>
+        <textarea class="edit-copy" id="edit-a" rows="2" spellcheck="false"></textarea>
+        <button class="edit-revert" data-key="a" title="Revert to seed">↺</button>
+      </div>
+      <canvas id="poster-a" width="1080" height="1350"></canvas>
+      <div class="card-foot">
+        <span style="font-family:var(--kami-font-mono);font-size:11px;color:var(--text);opacity:.55">poster · A</span>
+        <button class="dl" id="dl-a">PNG</button>
+      </div>
+      <div class="trace" id="trace-a"></div>
+    </article>
+    <article class="poster-card">
+      <div class="edit-strip" data-key="b">
+        <label class="edit-lbl">copy · B</label>
+        <textarea class="edit-copy" id="edit-b" rows="2" spellcheck="false"></textarea>
+        <button class="edit-revert" data-key="b" title="Revert to seed">↺</button>
+      </div>
+      <canvas id="poster-b" width="1080" height="1350"></canvas>
+      <div class="card-foot">
+        <span style="font-family:var(--kami-font-mono);font-size:11px;color:var(--text);opacity:.55">poster · B</span>
+        <button class="dl" id="dl-b">PNG</button>
+      </div>
+      <div class="trace" id="trace-b"></div>
+    </article>
+  </div>
+</main>
+
+<aside class="wg" id="panel">
+  <div class="wg-title" role="button" tabindex="0">Control</div>
+  <div class="wg-body" id="control-body"></div>
+</aside>
+
+<footer class="wa-bottom">
+  <nav class="row sister" aria-label="Sister sites">
+    <span><a href="https://apps.iamkesava.com/">apps</a></span><span class="sep">·</span>
+    <span><a href="https://tools.iamkesava.com/">tools</a></span><span class="sep">·</span>
+    <span class="current">toys</span><span class="sep">·</span>
+    <span><a href="https://codex.iamkesava.com/">codex</a></span>
+  </nav>
+  <div class="row made">
+    made by <a href="https://iamkesava.com" rel="author">kesava</a> <span class="sep">·</span> <a href="https://github.com/k3sava/poster" rel="noopener">github</a>
+  </div>
+</footer>
+
+<script src="shared/parse.js"></script>
+<script src="shared/seed.js"></script>
+<script src="shared/article.js"></script>
+<script src="shared/templateParams.js"></script>
+<script src="shared/layout.js"></script>
+<script src="shared/mycelium.js"></script>
+<script src="shared/conceit.js"></script>
+<script src="shared/archetypes.js"></script>
+<script src="shared/director.js"></script>
+<script src="shared/render.js"></script>
+<script src="shared/app.js"></script>
+</body>
+</html>
