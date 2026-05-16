@@ -263,18 +263,31 @@ function bind(){
   $('#phrase').addEventListener('keydown', e=>{
     if((e.metaKey||e.ctrlKey) && e.key === 'Enter') $('#go').click();
   });
-  // Control panel toggle — pixart chrome uses body.panel-collapsed to hide the wg.
-  $('#panel-toggle').addEventListener('click', ()=>{
-    document.body.classList.toggle('panel-collapsed');
-    const collapsed = document.body.classList.contains('panel-collapsed');
-    $('#panel-toggle').setAttribute('aria-pressed', collapsed ? 'false' : 'true');
-  });
-  // Click the wg-title bar also toggles (matches pixart UX).
-  document.querySelector('.wg-title').addEventListener('click', ()=>{
-    document.body.classList.toggle('panel-collapsed');
-    const collapsed = document.body.classList.contains('panel-collapsed');
-    $('#panel-toggle').setAttribute('aria-pressed', collapsed ? 'false' : 'true');
-  });
+  // Pixart's pattern: .wg.collapsed flips the panel; body.panel-collapsed
+  // adjusts the stage padding. On mobile the .wg defaults to "sheet down";
+  // toggling .collapsed slides it up.
+  const isMobile = () => matchMedia('(max-width:640px)').matches;
+  function setCollapsed(collapsed){
+    const wg = document.querySelector('#panel');
+    if(isMobile()){
+      // On mobile, .wg.collapsed = sheet UP (open). Counter-intuitive but matches gui.css.
+      wg.classList.toggle('collapsed', collapsed);
+      document.body.classList.toggle('panel-collapsed', !collapsed);
+    } else {
+      wg.classList.toggle('collapsed', !collapsed);
+      document.body.classList.toggle('panel-collapsed', !collapsed);
+    }
+    $('#panel-toggle').setAttribute('aria-pressed', collapsed ? 'true' : 'false');
+  }
+  function panelIsOpen(){
+    const wg = document.querySelector('#panel');
+    return isMobile() ? wg.classList.contains('collapsed') : !wg.classList.contains('collapsed');
+  }
+  $('#panel-toggle').addEventListener('click', ()=> setCollapsed(!panelIsOpen()));
+  $('#wg-collapse').addEventListener('click', ()=> setCollapsed(!panelIsOpen()));
+  document.querySelector('.wg-title').addEventListener('click', ()=> setCollapsed(!panelIsOpen()));
+  // Default: open on desktop, closed on mobile.
+  setCollapsed(!isMobile());
   // Edit mode toggle.
   $('#edit-toggle').addEventListener('click', ()=>{
     document.body.classList.toggle('edit-mode');

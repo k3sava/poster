@@ -203,6 +203,44 @@ html[data-theme="terminal"] .trace-conceit{ background:rgba(255,255,255,0.04); }
 .wa-action-btn:hover{ border-color:var(--text); }
 .wa-action-btn[aria-pressed="true"]{ background:var(--text); color:var(--bg); }
 
+/* ---------- MOBILE (<= 640px) ---------- */
+@media (max-width:640px){
+  body.poster-app .wa-stage{
+    padding: calc(var(--wa-top-h, 44px) + 8px) 0 24px 0;
+  }
+  body.poster-app:not(.panel-collapsed) .wa-stage{ padding-right:0 !important; }
+  .masthead{ padding:0 16px; margin-top:8px; }
+  .masthead-lede{ padding:12px 0 6px; }
+  .masthead-title{ font-size:24px; line-height:1.1; }
+  .masthead-sub{ font-size:13px; }
+  .input-strip{
+    flex-direction:column; gap:10px; padding:14px 16px 8px;
+  }
+  .input-cta{ flex-direction:row; flex-wrap:wrap; gap:8px; }
+  #go{ flex:1; min-width:0; padding:10px 18px; min-height:42px; }
+  .input-cta .tb{ flex:1; padding:10px 14px; min-height:42px; }
+  #phrase{ min-height:84px; font-size:16px; }
+  #status{ padding:0 16px 8px; }
+  .diptych{
+    grid-template-columns:1fr !important;
+    gap:16px; padding:8px 16px 24px;
+  }
+  .poster-card canvas{ aspect-ratio:4/5; }
+  .trace{ font-size:11px; max-height:200px; }
+  .trace-conceit{ grid-template-columns:auto 1fr; }
+  .trace-conceit-desc{ grid-column:1 / span 2; }
+  .trace-row{ grid-template-columns:64px 1fr; column-gap:8px; }
+  /* Footer: single-row with smaller text on mobile. */
+  body.poster-app .wa-bottom{ padding:10px 12px; font-size:11px; flex-wrap:wrap; gap:6px 12px; }
+  body.poster-app .wa-bottom .row{ flex-wrap:wrap; }
+  /* Top-bar buttons: shrink labels to fit. */
+  .wa-action-btn{ padding:5px 10px; font-size:12px; }
+  /* Edit strip: compact. */
+  .edit-strip{ padding:8px 10px; gap:6px; flex-wrap:wrap; }
+  .edit-strip .edit-lbl{ font-size:9px; min-width:auto; flex:0 0 100%; margin-top:0; }
+  .edit-strip .edit-copy{ font-size:13px; min-height:32px; }
+}
+
 /* Paper-grain background — workshop, not chrome. Light themes only. */
 html:not([data-theme="terminal"]):not([data-theme="dark"]) body.poster-app .wa-stage{
   background-image:
