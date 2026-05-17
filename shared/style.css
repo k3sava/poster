@@ -209,6 +209,28 @@ html[data-theme="terminal"] .trace-conceit{ background:rgba(255,255,255,0.04); }
     padding: calc(var(--wa-top-h, 44px) + 8px) 0 24px 0;
   }
   body.poster-app:not(.panel-collapsed) .wa-stage{ padding-right:0 !important; }
+  /* Hide the bottom-sheet peek entirely on mobile. The top-bar "control"
+     button is the only affordance — clean and unambiguous. When collapsed,
+     the panel sits fully off-screen. */
+  body.poster-app #panel{
+    transform: translateY(100%) !important;
+    bottom: 0 !important;
+    border-top: 1px solid var(--bar-border) !important;
+  }
+  body.poster-app #panel.collapsed{
+    transform: translateY(0) !important;
+  }
+  body.poster-app #panel .wg-collapse{ display:none !important; }
+  /* Canvas: cap at ~64vh so two posters + traces fit in roughly one viewport
+     and the page scrolls predictably. Touch-action:pan-y guarantees vertical
+     swipe always passes through to the document, even if a future render
+     hooks pointer events. */
+  .poster-card canvas{
+    max-height: 64vh; object-fit: contain;
+    touch-action: pan-y;
+  }
+  .poster-card{ touch-action: pan-y; }
+  body.poster-app{ touch-action: pan-y; }
   .masthead{ padding:0 16px; margin-top:8px; }
   .masthead-lede{ padding:12px 0 6px; }
   .masthead-title{ font-size:24px; line-height:1.1; }
